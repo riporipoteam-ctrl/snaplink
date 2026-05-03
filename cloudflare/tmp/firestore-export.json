@@ -1,0 +1,227 @@
+{
+  "exportedAt": "2026-04-16T13:32:11.089Z",
+  "documents": [
+    {
+      "path": "users/0JeQMOJ3EbQqy52AtPlqaVy4NmQ2",
+      "collectionName": "users",
+      "docId": "0JeQMOJ3EbQqy52AtPlqaVy4NmQ2",
+      "parentPath": null,
+      "ownerId": null,
+      "createdAt": null,
+      "payload": {
+        "id": "0JeQMOJ3EbQqy52AtPlqaVy4NmQ2",
+        "username": "lol",
+        "email": "lol@gmail.com",
+        "level": 1,
+        "tokens": 100,
+        "bio": "Just joined MakeSpace!",
+        "friends": [],
+        "friendRequests": [],
+        "avatar": {
+          "color": "#8B5CF6",
+          "hat": "none",
+          "shirtColor": "#1E293B",
+          "pantsColor": "#0F172A"
+        }
+      }
+    },
+    {
+      "path": "users/2DDG3DLLggYgHxzoHV6JzaY6KKF3",
+      "collectionName": "users",
+      "docId": "2DDG3DLLggYgHxzoHV6JzaY6KKF3",
+      "parentPath": null,
+      "ownerId": null,
+      "createdAt": null,
+      "payload": {
+        "id": "2DDG3DLLggYgHxzoHV6JzaY6KKF3",
+        "username": "Bob",
+        "email": "bob@gmail.com",
+        "level": 1,
+        "tokens": 100,
+        "bio": "Just joined MakeSpace!",
+        "friends": [],
+        "friendRequests": [],
+        "avatar": {
+          "pantsColor": "#F97316",
+          "hat": "cap",
+          "color": "#3B82F6",
+          "shirtColor": "#1E293B"
+        }
+      }
+    },
+    {
+      "path": "users/C5hY34z0i8VMRkCVAl0VhhaxR3n1",
+      "collectionName": "users",
+      "docId": "C5hY34z0i8VMRkCVAl0VhhaxR3n1",
+      "parentPath": null,
+      "ownerId": "C5hY34z0i8VMRkCVAl0VhhaxR3n1",
+      "createdAt": "2026-03-21T22:38:02.585Z",
+      "payload": {
+        "uid": "C5hY34z0i8VMRkCVAl0VhhaxR3n1",
+        "username": "sksdksd",
+        "displayName": "Sksdk sd",
+        "email": "afsakfkj@gmail.com",
+        "avatarVersion": 1,
+        "currentRoomId": "dorm-C5hY34z0i8VMRkCVAl0VhhaxR3n1",
+        "dormRoomId": "dorm-C5hY34z0i8VMRkCVAl0VhhaxR3n1",
+        "qualityTier": "ultra",
+        "tutorialSeen": [],
+        "moderationState": "clear",
+        "friendIds": [],
+        "groupIds": [],
+        "createdAt": "2026-03-21T22:38:02.585Z",
+        "onboardingStage": "completed",
+        "updatedAt": "2026-03-21T22:38:12.835Z"
+      }
+    },
+    {
+      "path": "users/NmgPsPUrJ1aThQqgJHbqFpzpgbB2",
+      "collectionName": "users",
+      "docId": "NmgPsPUrJ1aThQqgJHbqFpzpgbB2",
+      "parentPath": null,
+      "ownerId": "NmgPsPUrJ1aThQqgJHbqFpzpgbB2",
+      "createdAt": "2026-04-15T21:00:03.731Z",
+      "payload": {
+        "uid": "NmgPsPUrJ1aThQqgJHbqFpzpgbB2",
+        "bio": "",
+        "photoURL": "https://api.dicebear.com/7.x/avataaars/svg?seed=person_106",
+        "bannerURL": "https://picsum.photos/seed/snaplink/800/200",
+        "createdAt": "2026-04-15T21:00:03.731Z",
+        "followersCount": 0,
+        "followingCount": 0,
+        "role": "user",
+        "isBanned": false,
+        "isVerified": false,
+        "snapCoins": 100,
+        "level": 1,
+        "xp": 0,
+        "totalXp": 0,
+        "notificationsEnabled": false,
+        "notificationPermission": "default",
+        "unlockedDecorations": [],
+        "displayName": "Axor",
+        "username": "axorrtpi",
+        "activityStatus": "idle",
+        "lastSeen": "2026-04-15T21:27:05.671Z"
+      }
+    },
+    {
+      "path": "users/aRzurKZvrlQzsejxYagNkeP79rv1",
+      "collectionName": "users",
+      "docId": "aRzurKZvrlQzsejxYagNkeP79rv1",
+      "parentPath": null,
+      "ownerId": null,
+      "createdAt": null,
+      "payload": {
+        "id": "aRzurKZvrlQzsejxYagNkeP79rv1",
+        "username": "hellotesters",
+        "email": "helloworld@gmail.com",
+        "level": 1,
+        "tokens": 100,
+        "bio": "Just joined MakeSpace!",
+        "friends": [],
+        "friendRequests": [],
+        "avatar": {
+          "color": "#8B5CF6",
+          "hat": "none",
+          "shirtColor": "#1E293B",
+          "pantsColor": "#0F172A"
+        }
+      }
+    },
+    {
+      "path": "users/cnzs568kA2WLBfWaczdkfq8ZRD23",
+      "collectionName": "users",
+      "docId": "cnzs568kA2WLBfWaczdkfq8ZRD23",
+      "parentPath": null,
+      "ownerId": null,
+      "createdAt": null,
+      "payload": {
+        "id": "cnzs568kA2WLBfWaczdkfq8ZRD23",
+        "username": "Bill",
+        "email": "bill@gmail.com",
+        "level": 1,
+        "tokens": 100,
+        "bio": "Just joined MakeSpace!",
+        "friends": [],
+        "friendRequests": [],
+        "avatar": {
+          "color": "#8B5CF6",
+          "hat": "none",
+          "shirtColor": "#1E293B",
+          "pantsColor": "#0F172A"
+        }
+      }
+    },
+    {
+      "path": "users/m0LV2Nbzh6YlKNeEeLJ4yJgAdZ03",
+      "collectionName": "users",
+      "docId": "m0LV2Nbzh6YlKNeEeLJ4yJgAdZ03",
+      "parentPath": null,
+      "ownerId": null,
+      "createdAt": null,
+      "payload": {
+        "id": "m0LV2Nbzh6YlKNeEeLJ4yJgAdZ03",
+        "username": "dsu",
+        "email": "sdu@gmail.com",
+        "level": 1,
+        "tokens": 100,
+        "bio": "Just joined MakeSpace!",
+        "friends": [],
+        "friendRequests": [],
+        "avatar": {
+          "color": "#8B5CF6",
+          "hat": "none",
+          "shirtColor": "#1E293B",
+          "pantsColor": "#0F172A"
+        }
+      }
+    },
+    {
+      "path": "users/znil3q1X0tSBaVg2sq0f8KK4CTj2",
+      "collectionName": "users",
+      "docId": "znil3q1X0tSBaVg2sq0f8KK4CTj2",
+      "parentPath": null,
+      "ownerId": "znil3q1X0tSBaVg2sq0f8KK4CTj2",
+      "createdAt": "2026-03-21T14:07:54.285Z",
+      "payload": {
+        "uid": "znil3q1X0tSBaVg2sq0f8KK4CTj2",
+        "username": "sdasd",
+        "displayName": "SKS RDSJK",
+        "email": "sdasdas@gmail.com",
+        "avatarVersion": 1,
+        "currentRoomId": "dorm-znil3q1X0tSBaVg2sq0f8KK4CTj2",
+        "dormRoomId": "dorm-znil3q1X0tSBaVg2sq0f8KK4CTj2",
+        "qualityTier": "ultra",
+        "moderationState": "clear",
+        "friendIds": [],
+        "groupIds": [],
+        "createdAt": "2026-03-21T14:07:54.285Z",
+        "onboardingStage": "completed",
+        "tutorialSeen": [
+          "movement",
+          "phone",
+          "build",
+          "friends",
+          "publish"
+        ],
+        "updatedAt": "2026-03-21T14:08:27.293Z"
+      }
+    },
+    {
+      "path": "sessions/37a332d9-67ba-4512-b4a6-d759293f9877",
+      "collectionName": "sessions",
+      "docId": "37a332d9-67ba-4512-b4a6-d759293f9877",
+      "parentPath": null,
+      "ownerId": "NmgPsPUrJ1aThQqgJHbqFpzpgbB2",
+      "createdAt": "2026-04-15T21:23:04.993Z",
+      "payload": {
+        "uid": "NmgPsPUrJ1aThQqgJHbqFpzpgbB2",
+        "os": "Windows",
+        "browser": "Firefox",
+        "createdAt": "2026-04-15T21:23:04.993Z",
+        "lastActive": "2026-04-15T21:27:11.065Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+name = "snaplink-data"
+main = "src/index.ts"
+compatibility_date = "2026-04-16"
+
+[[d1_databases]]
+binding = "SNAPLINK_DB"
+database_name = "snaplink"
+database_id = "075c5530-7af3-46e0-80a9-51f60c51a79a"

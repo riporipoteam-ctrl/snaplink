@@ -1,0 +1,12 @@
+<svg viewBox="0 0 84 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="snaplink-favicon-fill" x1="8" y1="8" x2="76" y2="76" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE" />
+      <stop offset="0.58" stop-color="#3B82F6" />
+      <stop offset="1" stop-color="#1D4ED8" />
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="72" height="72" rx="23" fill="url(#snaplink-favicon-fill)" />
+  <rect x="19.5" y="26" width="29" height="18" rx="9" transform="rotate(-38 34 35)" stroke="white" stroke-width="7" />
+  <rect x="35.5" y="40" width="29" height="18" rx="9" transform="rotate(-38 50 49)" stroke="white" stroke-width="7" />
+</svg>

@@ -1,0 +1,17 @@
+{
+  "name": "SnapLink",
+  "short_name": "SnapLink",
+  "description": "SnapLink social hub",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "/favicon.svg?v=20260417c",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

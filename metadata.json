@@ -1,0 +1,5 @@
+{
+  "name": "SnapLink",
+  "description": "A fully functional social media platform with real-time posts, likes, comments, user profiles, admin panel, and a virtual economy.",
+  "requestFramePermissions": ["camera", "microphone", "display-capture"]
+}

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>MakeSpace Launcher</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background: #000;
+        color: #fff;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      #renderCanvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+        touch-action: none;
+      }
+
+      #makespace-loader {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background:
+          radial-gradient(circle at top, rgba(37, 99, 235, 0.22), transparent 38%),
+          linear-gradient(180deg, rgba(2, 6, 23, 0.88), rgba(2, 6, 23, 0.96));
+        z-index: 10;
+        transition: opacity 220ms ease;
+      }
+
+      #makespace-loader.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #makespace-loader-card {
+        max-width: 30rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 2rem;
+        background: rgba(2, 6, 23, 0.55);
+        padding: 1.25rem 1.5rem;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(18px);
+        text-align: center;
+      }
+
+      #makespace-loader-kicker {
+        font-size: 11px;
+        font-weight: 900;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: rgba(186, 230, 253, 0.82);
+      }
+
+      #makespace-loader-title {
+        margin-top: 0.55rem;
+        font-size: 1.65rem;
+        font-weight: 900;
+        letter-spacing: -0.03em;
+      }
+
+      #makespace-loader-copy {
+        margin-top: 0.55rem;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.74);
+      }
+    </style>
+    <script src="https://www.vrspace.org/babylon/js/lib/babylon.js"></script>
+    <script src="https://www.vrspace.org/babylon/js/lib/babylonjs.loaders.min.js"></script>
+    <script src="https://www.vrspace.org/babylon/js/lib/babylon.gui.min.js"></script>
+    <script src="https://www.vrspace.org/babylon/js/lib/babylonjs.materials.min.js"></script>
+    <script src="https://www.vrspace.org/babylon/js/lib/babylonjs.proceduralTextures.min.js"></script>
+    <script src="https://www.vrspace.org/babylon/js/lib/babylon.dynamicTerrain.min.js"></script>
+    <script src="https://www.vrspace.org/babylon/js/lib/babylonjs.serializers.min.js"></script>
+    <script src="https://www.vrspace.org/babylon/js/lib/HavokPhysics_umd.js"></script>
+    <script src="https://www.vrspace.org/babylon/js/vrspace-min.js" type="module"></script>
+    <script src="https://www.vrspace.org/babylon/js/lib/annyang-2.6.1.min.js"></script>
+    <script src="https://www.vrspace.org/babylon/js/lib/perlin.js"></script>
+    <script src="https://www.vrspace.org/babylon/js/lib/openvidu-browser-2.32.1.min.js"></script>
+    <script src="https://www.vrspace.org/babylon/js/client/openapi/superagent.min.js"></script>
+  </head>
+  <body>
+    <div id="makespace-loader">
+      <div id="makespace-loader-card">
+        <div id="makespace-loader-kicker">MakeSpace</div>
+        <div id="makespace-loader-title">Launching the live world</div>
+        <div id="makespace-loader-copy">Booting the synced multiplayer world now.</div>
+      </div>
+    </div>
+
+    <canvas id="renderCanvas" touch-action="none" tabindex="0"></canvas>
+    <div id="videos" hidden></div>
+    <div id="iframe" style="position:absolute;top:0;width:100%;">
+      <iframe id="customAvatarFrame" allow="camera *; microphone *" width="100%" height="800" hidden="true"></iframe>
+    </div>
+
+    <script type="module">
+      const VRSPACE_BASE = 'https://www.vrspace.org';
+      const params = new URLSearchParams(window.location.search);
+      const canvas = document.getElementById('renderCanvas');
+      const loader = document.getElementById('makespace-loader');
+      const loaderCopy = document.getElementById('makespace-loader-copy');
+      const worldKey = params.get('worldKey') || 'spaceport';
+      const worldName = params.get('worldName') || worldKey;
+      const avatarUrl = params.get('avatarUrl') || `${VRSPACE_BASE}/content/char/rpm-male.glb`;
+      const snaplinkName = params.get('snaplinkName') || params.get('snaplinkUser') || 'SnapLink Player';
+
+      if (loaderCopy) {
+        loaderCopy.textContent = `Entering ${worldName} as ${snaplinkName}.`;
+      }
+
+      let fullscreenTriggered = false;
+      const requestFullscreen = async () => {
+        if (fullscreenTriggered) return;
+        fullscreenTriggered = true;
+        try {
+          await canvas.requestFullscreen();
+        } catch {
+          // Ignore browsers that block fullscreen until a second gesture.
+        }
+      };
+
+      window.addEventListener('touchstart', requestFullscreen, { passive: false });
+      window.addEventListener('click', requestFullscreen, { passive: false });
+
+      const engine = new BABYLON.Engine(canvas, true, { audioEngine: true });
+      let activeScene = null;
+      let hasEnteredWorld = false;
+
+      import('https://www.vrspace.org/babylon/avatar-selection.js')
+        .then((module) => {
+          const { AvatarSelection } = module;
+          const { VRSPACEUI } = window;
+
+          if (VRSPACEUI) {
+            VRSPACEUI.contentBase = VRSPACE_BASE;
+          }
+
+          const world = new AvatarSelection();
+          world.contentBase = VRSPACE_BASE;
+          world.enableLogin = false;
+          world.showAnimationButtons = false;
+          world.displayOwnVideo = false;
+          world.anonymousAllowed = true;
+          world.buttonsZ = -20;
+          world.checkValidName = () => true;
+          world.addCharacterButtons = () => {};
+          world.removeCharacterButtons = () => {};
+          world.animationButtons = () => {};
+          world.showPortals = () => {};
+
+          world.afterEnter = () => {
+            if (loader) {
+              loader.classList.add('hidden');
+            }
+            window.parent?.postMessage(
+              {
+                type: 'snaplink-makespace-entered',
+                worldKey,
+              },
+              '*'
+            );
+          };
+
+          world.afterExit = () => {
+            if (loaderCopy) {
+              loaderCopy.textContent = 'Disconnected from the world. Reload MakeSpace to join again.';
+            }
+          };
+
+          world.init(engine, 'avatar').then((scene) => {
+            activeScene = scene;
+            world.setMyName(snaplinkName);
+
+            world.autoEnterPortal = () => {
+              if (hasEnteredWorld) return;
+              hasEnteredWorld = true;
+              const worldUrl = `${VRSPACE_BASE}/content/worlds/${worldKey}`;
+              world.enterWorld(worldUrl, worldName, world.avatarUrl(), 'world.js');
+            };
+
+            world.loadCharacterUrl(avatarUrl);
+
+            window.parent?.postMessage(
+              {
+                type: 'snaplink-makespace-ready',
+                worldKey,
+              },
+              '*'
+            );
+          });
+        })
+        .catch(() => {
+          if (loaderCopy) {
+            loaderCopy.textContent = 'MakeSpace could not boot the world runtime.';
+          }
+        });
+
+      window.addEventListener('resize', () => engine.resize());
+
+      window.addEventListener('beforeunload', () => {
+        if (activeScene && typeof activeScene.dispose === 'function') {
+          activeScene.dispose();
+        }
+      });
+    </script>
+  </body>
+</html>
