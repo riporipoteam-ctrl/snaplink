@@ -110,6 +110,10 @@ function New-SnapLinkSplash {
 }
 
 New-SnapLinkIcon -Path 'ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-512@2x.png' -Size 1024
+New-SnapLinkIcon -Path 'public/apple-touch-icon.png' -Size 180
+New-SnapLinkIcon -Path 'public/icons/snaplink-icon-192.png' -Size 192
+New-SnapLinkIcon -Path 'public/icons/snaplink-icon-512.png' -Size 512
+New-SnapLinkIcon -Path 'public/icons/snaplink-maskable-512.png' -Size 512
 
 $androidIcons = @(
   @{ Path = 'android/app/src/main/res/mipmap-mdpi/ic_launcher.png'; Size = 48 },

@@ -2,7 +2,7 @@ self.addEventListener('install', () => {
   self.skipWaiting();
 });
 
-const SNAPLINK_ICON_PATH = '/favicon.svg?v=20260417c';
+const SNAPLINK_ICON_PATH = '/icons/snaplink-icon-192.png?v=20260504';
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(self.clients.claim());

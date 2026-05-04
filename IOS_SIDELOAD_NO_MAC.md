@@ -4,6 +4,18 @@ This is the no-Mac, no-TestFlight, no-paid-Apple-developer route.
 
 It is not App Store distribution. It is sideloading, which means the app can appear on your iPhone home screen as a real app, but free Apple ID signing has limits.
 
+## If You Do Not Have A Cable
+
+Use the SnapLink iPhone install page instead:
+
+```text
+https://snaplinknetwork.netlify.app/install
+```
+
+Open that link on iPhone Safari, tap Share, then choose Add to Home Screen. That is the clean no-cable install path we can control today. It is not an unsigned IPA install, because iOS blocks unsigned IPA downloads from the web.
+
+The IPA route below still needs either a USB pairing step, paid signing, or a trusted signing service. Random no-cable certificate stores are not recommended for SnapLink because they can get revoked and may ask you to trust unknown certificates.
+
 ## What this setup adds
 
 - A GitHub Actions workflow at `.github/workflows/build-ios-sideload-ipa.yml`.
@@ -32,7 +44,7 @@ Sideloadly flow:
 
 1. Install iTunes/iCloud from Apple if Sideloadly asks for them.
 2. Install Sideloadly on Windows.
-3. Plug the iPhone into the PC and trust the computer on the iPhone.
+3. Plug the iPhone into the PC and trust the computer on the iPhone. Without this first pairing/signing step, Sideloadly is not the right path.
 4. Open Sideloadly, select `SnapLink-unsigned.ipa`, enter your Apple ID, then start.
 5. Trust the developer profile on the iPhone if iOS asks.
 6. Open SnapLink from the iPhone home screen.

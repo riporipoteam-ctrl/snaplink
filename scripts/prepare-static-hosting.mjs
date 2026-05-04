@@ -30,6 +30,7 @@ const sitemapRoutes = [
   '/events',
   '/friends',
   '/groups',
+  '/install',
   '/live',
   '/messages',
   '/notifications',

@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { Layout } from './components/layout/Layout';
 import { Home } from './pages/Home';
 import { Login } from './pages/Login';
+import { InstallApp } from './pages/InstallApp';
 import { Onboarding } from './pages/Onboarding';
 import { Profile } from './pages/Profile';
 import { PostDetail } from './pages/PostDetail';
@@ -64,6 +65,7 @@ export function AnimatedRoutes() {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location}>
+        <Route path="/install" element={<PageWrapper><InstallApp /></PageWrapper>} />
         <Route path="/login" element={<PageWrapper><Login /></PageWrapper>} />
         <Route path="/onboarding" element={<PageWrapper><Onboarding /></PageWrapper>} />
         <Route path="/" element={<Layout />}>

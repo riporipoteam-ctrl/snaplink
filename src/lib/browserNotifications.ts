@@ -15,7 +15,7 @@ export type SystemNotificationSupport = {
 };
 
 const SERVICE_WORKER_PATH = '/sw.js';
-const SNAPLINK_ICON_PATH = '/favicon.svg?v=20260417c';
+const SNAPLINK_ICON_PATH = '/icons/snaplink-icon-192.png?v=20260504';
 
 let attentionInterval: ReturnType<typeof setInterval> | null = null;
 let attentionTimeout: ReturnType<typeof setTimeout> | null = null;
@@ -209,7 +209,7 @@ export function triggerInAppAttention(input: {
 
   attentionInterval = setInterval(() => {
     visible = !visible;
-    document.title = visible ? `${alertTitle} • SnapLink` : baseTitle;
+    document.title = visible ? `${alertTitle} - SnapLink` : baseTitle;
   }, 900);
 
   attentionTimeout = setTimeout(() => {

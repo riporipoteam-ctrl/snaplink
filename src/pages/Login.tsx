@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Navigate, useSearchParams } from 'react-router-dom';
+import { Link, Navigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { Button } from '../components/ui/Button';
 import { Logo } from '../components/ui/Logo';
@@ -244,6 +244,12 @@ export function Login() {
                     Sign in
                   </button>
                 </p>
+                <Link
+                  to="/install"
+                  className="mt-3 inline-flex items-center justify-center rounded-full border border-blue-200/80 bg-blue-50/80 px-4 py-2 text-sm font-bold text-blue-700 transition hover:bg-blue-100 dark:border-blue-500/20 dark:bg-blue-500/10 dark:text-blue-200"
+                >
+                  Install SnapLink on iPhone
+                </Link>
               </div>
             </motion.div>
           )}

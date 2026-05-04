@@ -28,6 +28,8 @@ Builds and syncs the iOS project. The final iPhone run/archive step must happen 
 - `ios/` is generated.
 - Native-shell detection is enabled in `src/main.tsx`.
 - Native-only glass styling is enabled through `html[data-native-shell="true"]`.
+- A no-cable iPhone install page exists at `/install`.
+- Production install URL: `https://snaplinknetwork.netlify.app/install`.
 
 ## Local requirement before APK builds
 
@@ -41,9 +43,19 @@ Install a current JDK, set `JAVA_HOME` to the JDK folder, reopen the terminal, t
 
 The debug APK will be created under `android/app/build/outputs/apk/debug/`.
 
-## iPhone reality check
+## iPhone no-cable route
 
-There is no reliable “upload any Capacitor app into an App Store preview container for free” path. Since you do not have a Mac or paid Apple Developer Program account, use the sideload route in `IOS_SIDELOAD_NO_MAC.md`.
+Open this on iPhone Safari:
+
+```text
+https://snaplinknetwork.netlify.app/install
+```
+
+Then tap Share, choose Add to Home Screen, and open SnapLink from the new app icon. This gives SnapLink the easiest cable-free iPhone app experience.
+
+## iPhone IPA reality check
+
+There is no reliable "upload any Capacitor app into an App Store preview container for free" path. Since you do not have a Mac or paid Apple Developer Program account, use the no-cable Home Screen route above. Use the sideload route in `IOS_SIDELOAD_NO_MAC.md` only if you later get a cable or another signing path.
 
 That route builds `SnapLink-unsigned.ipa` using GitHub Actions on a macOS runner, then installs it with Sideloadly on Windows. SideStore and AltStore remain backup options.
 
