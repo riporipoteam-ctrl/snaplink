@@ -289,8 +289,8 @@ export function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen, isCollapsed = f
               <div className="flex items-center gap-3">
                 <Logo className="h-10 w-10" animate={false} />
                 <div>
-                  <div className="text-[11px] font-black uppercase tracking-[0.24em] text-blue-500">SnapLink</div>
-                  <div className="font-display text-xl font-black tracking-tight text-slate-950 dark:text-white">Menu</div>
+                  <div className="text-[11px] font-black uppercase tracking-[0.24em] text-blue-500">SnapLink 2.0</div>
+                  <div className="font-display text-xl font-black tracking-tight text-slate-950 dark:text-white">Network</div>
                 </div>
               </div>
             )}
@@ -356,8 +356,8 @@ export function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen, isCollapsed = f
               <div className="shrink-0 border-b border-slate-200/80 px-5 py-4 dark:border-slate-800/80">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-[11px] font-black uppercase tracking-[0.24em] text-blue-500">SnapLink</div>
-                    <div className="font-display text-lg font-black text-slate-950 dark:text-white">Menu</div>
+                    <div className="text-[11px] font-black uppercase tracking-[0.24em] text-blue-500">SnapLink 2.0</div>
+                    <div className="font-display text-lg font-black text-slate-950 dark:text-white">Network</div>
                   </div>
                   <button
                     onClick={() => setIsMobileMenuOpen?.(false)}

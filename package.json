@@ -10,6 +10,7 @@
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
     "app:sync": "npm run build && npx cap sync",
+    "app:icons": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/generate-native-icons.ps1",
     "app:android": "npm run app:sync && npx cap open android",
     "app:ios": "npm run app:sync && npx cap open ios",
     "deploy:surge": "npm run build && npx surge --project ./dist --domain snaplink.surge.sh",

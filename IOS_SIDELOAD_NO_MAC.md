@@ -9,7 +9,7 @@ It is not App Store distribution. It is sideloading, which means the app can app
 - A GitHub Actions workflow at `.github/workflows/build-ios-sideload-ipa.yml`.
 - The workflow uses a free GitHub macOS runner to compile the Capacitor iOS project.
 - It uploads `SnapLink-unsigned.ipa` as a workflow artifact.
-- You can install that IPA with SideStore or AltStore from Windows/iPhone.
+- You can install that IPA with Sideloadly from Windows, with SideStore/AltStore as backup routes.
 
 ## Build The IPA
 
@@ -24,10 +24,20 @@ It is not App Store distribution. It is sideloading, which means the app can app
 
 Use one of these sideload routes:
 
-- SideStore: best when you want refreshes from the iPhone after setup. Official guide: https://docs.sidestore.io/docs/installation/install
-- AltStore: good Windows-supported sideload path, but it usually needs AltServer on your PC for refreshes. Official guide/FAQ: https://faq.altstore.io/altstore-classic/your-altstore
+- Sideloadly: recommended Windows route for this project. Official site: https://sideloadly.io/index.html
+- SideStore: backup route when you want refreshes from the iPhone after setup. Official guide: https://docs.sidestore.io/docs/installation/install
+- AltStore: backup Windows-supported sideload path, but it usually needs AltServer on your PC for refreshes. Official guide/FAQ: https://faq.altstore.io/altstore-classic/your-altstore
 
-General flow:
+Sideloadly flow:
+
+1. Install iTunes/iCloud from Apple if Sideloadly asks for them.
+2. Install Sideloadly on Windows.
+3. Plug the iPhone into the PC and trust the computer on the iPhone.
+4. Open Sideloadly, select `SnapLink-unsigned.ipa`, enter your Apple ID, then start.
+5. Trust the developer profile on the iPhone if iOS asks.
+6. Open SnapLink from the iPhone home screen.
+
+SideStore/AltStore flow:
 
 1. Install SideStore or AltStore on the iPhone using their official guide.
 2. Sign in with a free Apple ID in the sideload app.

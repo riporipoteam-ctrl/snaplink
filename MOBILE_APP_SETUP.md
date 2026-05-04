@@ -45,7 +45,7 @@ The debug APK will be created under `android/app/build/outputs/apk/debug/`.
 
 There is no reliable “upload any Capacitor app into an App Store preview container for free” path. Since you do not have a Mac or paid Apple Developer Program account, use the sideload route in `IOS_SIDELOAD_NO_MAC.md`.
 
-That route builds `SnapLink-unsigned.ipa` using GitHub Actions on a macOS runner, then installs it with SideStore or AltStore.
+That route builds `SnapLink-unsigned.ipa` using GitHub Actions on a macOS runner, then installs it with Sideloadly on Windows. SideStore and AltStore remain backup options.
 
 If you later get Mac access, another route is opening `ios/App/App.xcodeproj` in Xcode with a personal Apple ID and running it as a development build.
 

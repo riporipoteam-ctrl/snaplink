@@ -85,6 +85,71 @@ function getDeviceInfo() {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+function buildSafeUsername(user: FirebaseUser) {
+  const base =
+    user.displayName ||
+    user.email?.split('@')[0] ||
+    `snaplink_${user.uid.slice(0, 6)}`;
+  const cleaned = base.toLowerCase().replace(/[^a-z0-9_]/g, '').slice(0, 18);
+  return `${cleaned || 'snaplink'}_${user.uid.slice(0, 6).toLowerCase()}`;
+}
+
+function buildDefaultProfile(user: FirebaseUser): UserProfile {
+  const createdAt = user.metadata.creationTime
+    ? new Date(user.metadata.creationTime).toISOString()
+    : new Date().toISOString();
+  const username = buildSafeUsername(user);
+
+  return {
+    uid: user.uid,
+    username,
+    displayName: user.displayName || username,
+    bio: '',
+    photoURL: user.photoURL || `https://api.dicebear.com/9.x/avataaars/svg?seed=${encodeURIComponent(username)}`,
+    bannerURL: 'https://picsum.photos/seed/snaplink/800/200',
+    createdAt,
+    followersCount: 0,
+    followingCount: 0,
+    role: user.email === 'ripo.ripoteam@gmail.com' ? 'admin' : 'user',
+    isBanned: false,
+    isVerified: false,
+    snapCoins: 100,
+    level: 1,
+    xp: 0,
+    totalXp: 0,
+    activityStatus: 'online',
+    actualPresenceStatus: 'online',
+    statusSetAt: new Date().toISOString(),
+    lastSeen: new Date().toISOString(),
+    notificationsEnabled: false,
+    notificationPermission: 'default',
+    unlockedDecorations: [],
+    blockedUserIds: [],
+    isPrivate: false,
+  };
+}
+
+function mergeProfileDefaults(user: FirebaseUser, data: Partial<UserProfile>) {
+  const defaults = buildDefaultProfile(user);
+  return {
+    ...defaults,
+    ...data,
+    uid: user.uid,
+    username: data.username || defaults.username,
+    displayName: data.displayName || defaults.displayName,
+    photoURL: data.photoURL || defaults.photoURL,
+    createdAt: data.createdAt || defaults.createdAt,
+    followersCount: data.followersCount ?? defaults.followersCount,
+    followingCount: data.followingCount ?? defaults.followingCount,
+    role: data.role || defaults.role,
+    isBanned: data.isBanned ?? defaults.isBanned,
+    isVerified: data.isVerified ?? defaults.isVerified,
+    snapCoins: data.snapCoins ?? defaults.snapCoins,
+    blockedUserIds: data.blockedUserIds || defaults.blockedUserIds,
+    unlockedDecorations: data.unlockedDecorations || defaults.unlockedDecorations,
+  } as UserProfile;
+}
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [currentUser, setCurrentUser] = useState<FirebaseUser | null>(null);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
@@ -121,8 +186,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const lookupId = ++profileLookupIdRef.current;
 
         if (docSnap.exists()) {
-          const data = docSnap.data() as UserProfile;
+          const rawData = docSnap.data() as Partial<UserProfile>;
+          const data = mergeProfileDefaults(user, rawData);
           console.log('User profile loaded:', data.username);
+          if (!rawData.username || !rawData.displayName || rawData.snapCoins === undefined) {
+            setDoc(userRef, data, { merge: true }).catch((err) => {
+              console.error('Failed to repair incomplete profile:', err);
+            });
+          }
           if (data.isPremium && data.premiumUntil && new Date(data.premiumUntil) <= new Date()) {
             const clearedPremiumProfile: UserProfile = {
               ...data,
@@ -165,16 +236,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           return;
         }
 
-        void getDoc(userRef).then((confirmedSnap) => {
+        void getDoc(userRef).then(async (confirmedSnap) => {
           if (lookupId !== profileLookupIdRef.current) return;
 
           if (confirmedSnap.exists()) {
-            const confirmedData = confirmedSnap.data() as UserProfile;
+            const confirmedData = mergeProfileDefaults(user, confirmedSnap.data() as Partial<UserProfile>);
             console.log('Recovered user profile after retry:', confirmedData.username);
+            setDoc(userRef, confirmedData, { merge: true }).catch((err) => {
+              console.error('Failed to repair recovered profile:', err);
+            });
             setUserProfile(confirmedData);
           } else {
             console.log('No user profile found for UID:', user.uid);
-            setUserProfile(null); // Needs onboarding
+            const repairedProfile = buildDefaultProfile(user);
+            await setDoc(userRef, repairedProfile, { merge: true });
+            console.log('Created fallback profile instead of forcing onboarding:', repairedProfile.username);
+            setUserProfile(repairedProfile);
           }
           setLoading(false);
         }).catch((retryError) => {

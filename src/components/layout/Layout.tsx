@@ -27,14 +27,6 @@ export function Layout() {
   const isMakeSpaceRoute = location.pathname === '/makespace';
   const isFocusRoute = location.pathname === '/ripoai' || isMakeSpaceRoute;
   const previousActiveEventIdRef = useRef<string | null>(null);
-  const accountCreatedAt = currentUser?.metadata.creationTime ? new Date(currentUser.metadata.creationTime).getTime() : 0;
-  const recentSignInAt = currentUser?.metadata.lastSignInTime ? new Date(currentUser.metadata.lastSignInTime).getTime() : 0;
-  const isFreshAccount =
-    !!currentUser &&
-    accountCreatedAt > 0 &&
-    Math.abs(recentSignInAt - accountCreatedAt) < 10 * 60 * 1000 &&
-    Date.now() - accountCreatedAt < 10 * 60 * 1000;
-
   React.useEffect(() => {
     const openComposer = () => setIsComposerOpen(true);
     window.addEventListener('snaplink:open-composer', openComposer);
@@ -88,33 +80,29 @@ export function Layout() {
   }
 
   if (!userProfile) {
-    if (isFreshAccount) {
-      return <Navigate to="/onboarding" replace />;
-    }
-
     return (
-      <div className="flex h-[100dvh] items-center justify-center bg-white px-6 text-center dark:bg-gray-900">
-        <div className="max-w-md rounded-[28px] border border-gray-200 bg-white/90 p-8 shadow-xl dark:border-gray-800 dark:bg-gray-900/90">
-          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-xl font-black text-blue-600 dark:bg-blue-900/20 dark:text-blue-300">
-            SL
+      <div className="flex h-[100dvh] items-center justify-center bg-[#f7f9fc] px-6 text-center dark:bg-[#030711]">
+        <div className="max-w-md rounded-[2rem] border border-slate-200/80 bg-white/92 p-8 shadow-[0_24px_80px_rgba(15,23,42,0.12)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/92">
+          <div className="mx-auto mb-5 h-16 w-16">
+            <Logo animate />
           </div>
-          <h1 className="text-2xl font-black tracking-tight text-gray-900 dark:text-white">Reconnecting your profile</h1>
-          <p className="mt-3 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-            Your account is signed in, but SnapLink has not finished loading your profile yet. This should stop the onboarding loop for existing accounts.
+          <h1 className="font-display text-2xl font-black tracking-tight text-slate-950 dark:text-white">Repairing your SnapLink profile</h1>
+          <p className="mt-3 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+            You are signed in. SnapLink is rebuilding the missing profile fields instead of sending you back through onboarding.
           </p>
           <div className="mt-6 flex flex-col gap-3">
             <button
               type="button"
               onClick={() => window.location.reload()}
-              className="rounded-full bg-blue-500 px-5 py-3 font-bold text-white transition hover:bg-blue-600"
+              className="rounded-full bg-slate-950 px-5 py-3 font-bold text-white transition hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200"
             >
               Retry Loading
             </button>
             <Link
-              to="/onboarding"
-              className="rounded-full border border-gray-300 px-5 py-3 font-semibold text-gray-600 transition hover:bg-gray-100 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
+              to="/settings"
+              className="rounded-full border border-slate-300 px-5 py-3 font-semibold text-slate-600 transition hover:bg-slate-100 dark:border-white/10 dark:text-slate-300 dark:hover:bg-white/10"
             >
-              Continue To Onboarding
+              Open Settings
             </Link>
           </div>
         </div>
