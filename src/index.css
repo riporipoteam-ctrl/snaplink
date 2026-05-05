@@ -2304,3 +2304,170 @@ html[data-native-shell="true"] .snaplink-ripoai-composer {
     font-size: 7rem;
   }
 }
+
+/* SnapLink 2.1 polish pass: cleaner shell, stronger depth, and better mobile touch targets. */
+:root {
+  --sl-refresh-accent: #0866ff;
+  --sl-refresh-cyan: #00c8ff;
+  --sl-refresh-ink: #020617;
+  --sl-refresh-soft: rgba(8, 102, 255, 0.08);
+}
+
+.snaplink-app-shell {
+  background:
+    radial-gradient(circle at 7% -8%, rgba(0, 200, 255, 0.16), transparent 21rem),
+    radial-gradient(circle at 98% 3%, rgba(8, 102, 255, 0.12), transparent 25rem),
+    linear-gradient(180deg, #fbfdff 0%, #f4f8ff 40%, #ffffff 100%) !important;
+}
+
+.dark .snaplink-app-shell {
+  background:
+    radial-gradient(circle at 10% -12%, rgba(0, 200, 255, 0.18), transparent 23rem),
+    radial-gradient(circle at 94% 0%, rgba(8, 102, 255, 0.16), transparent 25rem),
+    linear-gradient(180deg, #020617 0%, #06111f 46%, #020617 100%) !important;
+}
+
+.snaplink-sidebar-shell,
+.snaplink-mobile-header,
+.snaplink-mobile-tabbar {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.965), rgba(246, 250, 255, 0.92)) !important;
+  backdrop-filter: blur(22px) saturate(1.15);
+}
+
+.dark .snaplink-sidebar-shell,
+.dark .snaplink-mobile-header,
+.dark .snaplink-mobile-tabbar {
+  background:
+    linear-gradient(180deg, rgba(2, 6, 23, 0.96), rgba(5, 12, 24, 0.94)) !important;
+}
+
+.snaplink-sidebar-brand {
+  position: relative;
+}
+
+.snaplink-sidebar-brand::after {
+  content: "";
+  position: absolute;
+  inset: auto 1.1rem 0 1.1rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(8, 102, 255, 0.28), transparent);
+}
+
+.snaplink-nav-item-active,
+.snaplink-create-post-button {
+  background:
+    linear-gradient(135deg, var(--sl-refresh-ink), #09204a 52%, #0866ff) !important;
+  color: #ffffff !important;
+  box-shadow: 0 16px 36px rgba(8, 102, 255, 0.18) !important;
+}
+
+.dark .snaplink-nav-item-active,
+.dark .snaplink-create-post-button {
+  background:
+    linear-gradient(135deg, #ffffff, #dff5ff 52%, #a8eaff) !important;
+  color: #020617 !important;
+}
+
+.snaplink-side-card,
+.snaplink-right-column-card,
+.snaplink-profile-section,
+.snaplink-composer-frame,
+.snaplink-post-shell,
+.snaplink-stories-rail {
+  border-color: rgba(148, 163, 184, 0.22) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(250, 252, 255, 0.95)) !important;
+  box-shadow: 0 14px 44px rgba(15, 23, 42, 0.055) !important;
+}
+
+.dark .snaplink-side-card,
+.dark .snaplink-right-column-card,
+.dark .snaplink-profile-section,
+.dark .snaplink-composer-frame,
+.dark .snaplink-post-shell,
+.dark .snaplink-stories-rail {
+  border-color: rgba(71, 85, 105, 0.36) !important;
+  background:
+    linear-gradient(180deg, rgba(6, 16, 30, 0.98), rgba(3, 9, 20, 0.96)) !important;
+  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.24) !important;
+}
+
+.snaplink-post-shell {
+  border-radius: 1.15rem !important;
+}
+
+.snaplink-post-shell:hover {
+  transform: translateY(-1px);
+  border-color: rgba(8, 102, 255, 0.3) !important;
+}
+
+.snaplink-post-actions button,
+.snaplink-mobile-icon-button,
+.snaplink-mobile-profile-button {
+  min-height: 2.75rem;
+  transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
+}
+
+.snaplink-post-actions button:active,
+.snaplink-mobile-tab:active,
+.snaplink-nav-item:active,
+.snaplink-create-post-button:active {
+  transform: scale(0.975);
+}
+
+.snaplink-dense-tabs {
+  background:
+    linear-gradient(180deg, rgba(239, 246, 255, 0.9), rgba(226, 232, 240, 0.58)) !important;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.dark .snaplink-dense-tabs {
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.94), rgba(8, 13, 25, 0.82)) !important;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --snaplink-page-padding: 0;
+  }
+
+  .snaplink-main-panel {
+    background: #ffffff !important;
+  }
+
+  .dark .snaplink-main-panel {
+    background: #020617 !important;
+  }
+
+  .snaplink-mobile-header {
+    box-shadow: 0 10px 34px rgba(15, 23, 42, 0.08);
+  }
+
+  .snaplink-mobile-tabbar {
+    border-radius: 1.45rem 1.45rem 0 0;
+    box-shadow: 0 -18px 44px rgba(15, 23, 42, 0.12) !important;
+  }
+
+  .snaplink-post-shell,
+  .snaplink-composer-frame,
+  .snaplink-stories-rail {
+    margin-inline: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .snaplink-post-actions {
+    display: flex;
+    gap: 0.35rem;
+    overflow-x: auto;
+    padding-bottom: 0.15rem;
+    scrollbar-width: none;
+  }
+
+  .snaplink-post-actions::-webkit-scrollbar {
+    display: none;
+  }
+}

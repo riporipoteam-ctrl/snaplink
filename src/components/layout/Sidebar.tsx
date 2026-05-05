@@ -29,6 +29,7 @@ import {
   Lightbulb,
   Trophy,
   Gamepad2,
+  Smartphone,
   type LucideIcon,
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
@@ -108,6 +109,7 @@ export function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen, isCollapsed = f
     { icon: Lightbulb, label: 'Suggestions', path: '/suggestions' },
     ...(makeSpaceVisible ? [{ icon: Gamepad2, label: 'MakeSpace', path: '/makespace' }] : []),
     ...(ripoAIUnlocked ? [{ icon: Bot, label: 'RipoAI', path: '/ripoai' }] : []),
+    { icon: Smartphone, label: 'Mobile App', path: '/install' },
     { icon: ShoppingBag, label: 'Shop', path: '/shop' },
     { icon: Crown, label: 'Plus', path: '/premium' },
   ];

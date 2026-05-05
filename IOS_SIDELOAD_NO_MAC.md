@@ -16,6 +16,17 @@ Open that link on iPhone Safari, tap Share, then choose Add to Home Screen. That
 
 The IPA route below still needs either a USB pairing step, paid signing, or a trusted signing service. Random no-cable certificate stores are not recommended for SnapLink because they can get revoked and may ask you to trust unknown certificates.
 
+## Expo Go Alternative
+
+Use this if you want a real iPhone app container without a cable:
+
+```powershell
+cd snaplink-expo-go
+npm run start:tunnel
+```
+
+Install Expo Go from the iPhone App Store, then scan the QR code. This runs SnapLink inside Expo Go. It is the best Windows-friendly preview path, but it is not a standalone `.ipa`.
+
 ## What this setup adds
 
 - A GitHub Actions workflow at `.github/workflows/build-ios-sideload-ipa.yml`.

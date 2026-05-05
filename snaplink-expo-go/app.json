@@ -1,0 +1,37 @@
+{
+  "expo": {
+    "name": "SnapLink",
+    "slug": "snaplink-expo-go",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "snaplink",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#020617"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "app.snaplink.preview",
+      "infoPlist": {
+        "NSCameraUsageDescription": "SnapLink uses camera access for profile uploads, stories, calls, and live features.",
+        "NSMicrophoneUsageDescription": "SnapLink uses microphone access for calls, stories, and live features.",
+        "NSPhotoLibraryUsageDescription": "SnapLink uses photo access for posts, messages, stories, avatars, and uploads."
+      }
+    },
+    "android": {
+      "package": "app.snaplink.preview",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#020617"
+      },
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}

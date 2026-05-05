@@ -53,6 +53,23 @@ https://snaplinknetwork.netlify.app/install
 
 Then tap Share, choose Add to Home Screen, and open SnapLink from the new app icon. This gives SnapLink the easiest cable-free iPhone app experience.
 
+## iPhone Expo Go route
+
+If you want the closest "real app" preview without a cable, Mac, or Apple Developer account, use the Expo Go wrapper in `snaplink-expo-go/`.
+
+1. Install Expo Go from the iPhone App Store.
+2. On this PC, run:
+
+```powershell
+cd snaplink-expo-go
+npm run start:tunnel
+```
+
+3. Scan the QR code with the iPhone camera or Expo Go.
+4. SnapLink opens in an Expo-hosted native shell.
+
+Expo Go is still a preview container, not a standalone App Store app. A standalone `.ipa` still needs Apple signing.
+
 ## iPhone IPA reality check
 
 There is no reliable "upload any Capacitor app into an App Store preview container for free" path. Since you do not have a Mac or paid Apple Developer Program account, use the no-cable Home Screen route above. Use the sideload route in `IOS_SIDELOAD_NO_MAC.md` only if you later get a cable or another signing path.
